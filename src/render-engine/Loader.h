@@ -7,7 +7,7 @@ class Loader
 public:
 	Loader();
 
-	RawModel loadToVAO(std::vector<GLfloat> positions);
+	RawModel loadToVAO(std::vector<GLfloat> positions, std::vector<GLuint> indices);
 
 	void cleanUp();
 
@@ -17,6 +17,8 @@ private:
 	void storeDataInAttributeList(GLuint attNumber, std::vector<GLfloat> data);
 
 	void unbindVAO();
+
+	void bindIndicesBuffer(std::vector<GLuint> indices);
 
 private:
 	std::vector<GLuint> m_vaos;
