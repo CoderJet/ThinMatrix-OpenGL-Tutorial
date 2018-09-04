@@ -39,6 +39,31 @@ void Shader::bindAttribute(GLuint attribute, std::string variableName)
 	glBindAttribLocation(m_shader_id, attribute, variableName.c_str());
 }
 
+GLuint Shader::getUniformLocation(std::string uniformName)
+{
+	return glGetUniformLocation(m_shader_id, uniformName.c_str());
+}
+
+void Shader::loadFloat(GLuint location, GLfloat value)
+{
+	glUniform1f(location, value);
+}
+
+void Shader::loadVector(GLuint location, glm::vec3 vector)
+{
+	glUniform3f(location, vector.x, vector.y, vector.z);
+}
+
+void Shader::loadBool(GLuint location, GLboolean value)
+{
+	glUniform1f(location, value);
+}
+
+void Shader::loadMatrix(GLuint location, glm::mat4 matrix)
+{
+	glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
+}
+
 GLuint Shader::loadShader(std::string file, GLuint type)
 {
 	std::string shaderCode;
