@@ -33,6 +33,9 @@ void DisplayManager::createDisplay()
 
 		glViewport(0, 0, config::WIDTH, config::HEIGHT);
 
+		glewExperimental = true;
+		glewInit();
+
 		m_initialised = true;
 	}
 }

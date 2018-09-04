@@ -159,12 +159,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\render-engine\Renderer.h" />
+    <ClInclude Include="src\render-engine\Loader.h" />
+    <ClInclude Include="src\render-engine\RawModel.h" />
     <ClInclude Include="src\render-engine\DisplayManager.h" />
     <ClInclude Include="src\config\Config.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\render-engine\Renderer.cpp" />
+    <ClCompile Include="src\render-engine\Loader.cpp" />
+    <ClCompile Include="src\render-engine\RawModel.cpp" />
     <ClCompile Include="src\render-engine\DisplayManager.cpp" />
     <ClCompile Include="src\stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
