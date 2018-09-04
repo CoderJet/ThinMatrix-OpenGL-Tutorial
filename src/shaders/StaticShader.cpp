@@ -9,4 +9,5 @@ StaticShader::StaticShader()
 void StaticShader::bindAttributes()
 {
 	this->bindAttribute(0, "position");
+	this->bindAttribute(1, "textureCoords");
 }

@@ -1,6 +1,6 @@
 #pragma once
 
-class RawModel;
+class TexturedModel;
 
 class Renderer
 {
@@ -9,6 +9,6 @@ public:
 	
 	void prepare();
 
-	void render(RawModel model);
+	void render(TexturedModel texturedModel);
 };
 
