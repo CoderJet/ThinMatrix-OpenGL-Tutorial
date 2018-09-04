@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\shaders\Shader.h" />
     <ClInclude Include="src\render-engine\Renderer.h" />
     <ClInclude Include="src\render-engine\Loader.h" />
     <ClInclude Include="src\render-engine\RawModel.h" />
@@ -166,8 +167,10 @@
     <ClInclude Include="src\config\Config.h" />
     <ClInclude Include="src\stdafx.h" />
     <ClInclude Include="src\targetver.h" />
+    <ClInclude Include="src\shaders\StaticShader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\shaders\Shader.cpp" />
     <ClCompile Include="src\render-engine\Renderer.cpp" />
     <ClCompile Include="src\render-engine\Loader.cpp" />
     <ClCompile Include="src\render-engine\RawModel.cpp" />
@@ -179,6 +182,11 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\shaders\StaticShader.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\shaders\Basic.frag" />
+    <None Include="src\shaders\Basic.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
