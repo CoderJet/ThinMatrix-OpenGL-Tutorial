@@ -17,6 +17,7 @@ Shader::Shader(std::string vertexFile, std::string fragmentFile)
 void Shader::start()
 {
 	glUseProgram(m_shader_id);
+	getAllUniformLocations();
 }
 
 void Shader::stop()

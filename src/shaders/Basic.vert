@@ -6,9 +6,11 @@ in vec2 textureCoords;
 out vec2 texCoords;
 
 uniform mat4 transformationMatrix;
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
 
 void main()
 {
-	gl_Position = /*transformationMatrix **/ vec4(position, 1.0);
+	gl_Position = projectionMatrix * viewMatrix * transformationMatrix * vec4(position, 1.0);
 	texCoords = textureCoords;
 }

@@ -2,6 +2,8 @@
 
 #include "Shader.h"
 
+#include "entities/Camera.h"
+
 class StaticShader : public Shader
 {
 public:
@@ -13,7 +15,13 @@ public:
 
 	void loadTransformationMatrix(glm::mat4 matrix);
 
+	void loadProjectionMatrix(glm::mat4 projection);
+
+	void loadViewMatrix(Camera camera);
+
 private:
 	GLuint			m_transformation_matrix_id;
+	GLuint			m_projection_matrix_id;
+	GLuint			m_view_matrix_id;
 };
 

@@ -159,8 +159,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Entity.h" />
-    <ClInclude Include="Maths.h" />
+    <ClInclude Include="src\entities\Camera.h" />
+    <ClInclude Include="src\entities\Entity.h" />
+    <ClInclude Include="src\toolbox\Maths.h" />
     <ClInclude Include="src\textures\ModelTexture.h" />
     <ClInclude Include="src\shaders\Shader.h" />
     <ClInclude Include="src\render-engine\Renderer.h" />
@@ -174,8 +175,9 @@
     <ClInclude Include="src\models\TexturedModel.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Maths.cpp" />
+    <ClCompile Include="src\entities\Camera.cpp" />
+    <ClCompile Include="src\entities\Entity.cpp" />
+    <ClCompile Include="src\toolbox\Maths.cpp" />
     <ClCompile Include="src\textures\ModelTexture.cpp" />
     <ClCompile Include="src\shaders\Shader.cpp" />
     <ClCompile Include="src\render-engine\Renderer.cpp" />
