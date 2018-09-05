@@ -1,13 +1,12 @@
+// Precompiled header.
 #include "stdafx.h"
-
+// Header include.
 #include "Entity.h"
 
-Entity::Entity(TexturedModel model, glm::vec3 position, GLfloat rotX, GLfloat rotY, GLfloat rotZ, GLfloat scale)
+Entity::Entity(TexturedModel& model, glm::vec3 position, glm::vec3 rotation, GLfloat scale)
 	: m_model(model)
 	, m_position(position)
-	, m_rot_x(rotX)
-	, m_rot_y(rotY)
-	, m_rot_z(rotZ)
+	, m_rotation(rotation)
 	, m_scale(scale)
 {
 }
@@ -21,9 +20,9 @@ void Entity::increasePosition(GLfloat dx, GLfloat dy, GLfloat dz)
 
 void Entity::increaseRotation(GLfloat dx, GLfloat dy, GLfloat dz)
 {
-	m_rot_x += dx;
-	m_rot_y += dy;
-	m_rot_z += dz;
+	m_rotation.x += dx;
+	m_rotation.y += dy;
+	m_rotation.z += dz;
 }
 
 TexturedModel Entity::getModel()
@@ -36,19 +35,9 @@ glm::vec3 Entity::getPosition()
 	return m_position;
 }
 
-GLfloat Entity::getRotationX()
+glm::vec3 Entity::getRotation()
 {
-	return m_rot_x;
-}
-
-GLfloat Entity::getRotationY()
-{
-	return m_rot_y;
-}
-
-GLfloat Entity::getRotationZ()
-{
-	return m_rot_z;
+	return m_rotation;
 }
 
 GLfloat Entity::getScale()

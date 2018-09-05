@@ -1,4 +1,6 @@
+// Precompiled header.
 #include "stdafx.h"
+// Header include.
 #include "RawModel.h"
 
 RawModel::RawModel(GLuint vaoID, GLuint vertexCount)

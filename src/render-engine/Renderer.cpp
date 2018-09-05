@@ -1,11 +1,12 @@
+// Precompiled header.
 #include "stdafx.h"
-
+// Header include.
 #include "Renderer.h"
-
+// Local cincludes.
+#include "config/Config.h"
 #include "entities/Entity.h"
 #include "shaders/StaticShader.h"
 #include "toolbox/Maths.h"
-#include "config/Config.h"
 
 Renderer::Renderer(StaticShader& shader)
 {
@@ -17,29 +18,34 @@ Renderer::Renderer(StaticShader& shader)
 
 void Renderer::prepare()
 {
+	// Make sure we enable to depth buffer, in order for items
+	// not to draw ontop of one another.
 	glEnable(GL_DEPTH_TEST);
+	// Clear the screen with a default colour.
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::render(Entity entity, StaticShader& shader)
+void Renderer::render(Entity& entity, StaticShader& shader)
 {
+	// Get the textured model from our passed entity.
 	TexturedModel texturedModel(entity.getModel());
-
+	// Get the raw model from within the textured model.
 	RawModel model(texturedModel.getRawModel());
+	// Push the current models details out into a VAO so it can be rendered.
 	glBindVertexArray(model.getVaoID());
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 
+	// Get the entities current transformtion details so we can pass it to the shader.
 	glm::mat4 transformationMatrix(maths::createTransformationMatrix(
 		entity.getPosition(),
-		entity.getRotationX(),
-		entity.getRotationY(),
-		entity.getRotationZ(),
+		entity.getRotation(),
 		entity.getScale())
 	);
+	// Update the shader so objects can move.
 	shader.loadTransformationMatrix(transformationMatrix);
-
+	// Render the entity to the screen.
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texturedModel.getTexture().getID());
 	glDrawElements(GL_TRIANGLES, model.getVertexCount(), GL_UNSIGNED_INT, 0);
@@ -50,6 +56,7 @@ void Renderer::render(Entity entity, StaticShader& shader)
 
 void Renderer::createProjectionMatrix()
 {
+	// Initialise our view matrix once, as this won't be changing.
 	GLfloat aspectRatio((float)config::WIDTH / (float)config::HEIGHT);
 	GLfloat yScale((1.0f / tan(glm::radians(FOV / 2.0f))) * aspectRatio);
 	GLfloat xScale(yScale / aspectRatio);

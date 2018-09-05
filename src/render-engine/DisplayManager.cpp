@@ -1,7 +1,8 @@
+// Precompiled header.
 #include "stdafx.h"
-
+// Header include.
 #include "DisplayManager.h"
-
+// Local includes.
 #include "config/Config.h"
 
 DisplayManager::DisplayManager()
@@ -57,5 +58,6 @@ bool DisplayManager::isRunning()
 
 bool DisplayManager::pollEvents(sf::Event & event)
 {
+	// Fill the event with all currently polling events from the system.
 	return m_window.pollEvent(event);
 }

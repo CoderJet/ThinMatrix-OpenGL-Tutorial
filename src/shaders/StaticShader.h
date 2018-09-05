@@ -1,8 +1,8 @@
 #pragma once
-
+// Local includes.
 #include "Shader.h"
 
-#include "entities/Camera.h"
+class Camera;
 
 class StaticShader : public Shader
 {
@@ -17,7 +17,7 @@ public:
 
 	void loadProjectionMatrix(glm::mat4 projection);
 
-	void loadViewMatrix(Camera camera);
+	void loadViewMatrix(Camera& camera);
 
 private:
 	GLuint			m_transformation_matrix_id;

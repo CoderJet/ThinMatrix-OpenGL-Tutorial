@@ -1,12 +1,10 @@
 #pragma once
 
-#include "entities/Camera.h"
+class Camera;
 
 namespace maths
 {
-	glm::mat4 createTransformationMatrix(glm::vec3 translation,
-										 float rx, float ry, float rz,
-										 float scale);
+	glm::mat4 createTransformationMatrix(glm::vec3 translation, glm::vec3 rotation, float scale);
 
-	glm::mat4 createViewMatrix(Camera camera);
+	glm::mat4 createViewMatrix(Camera& camera);
 }

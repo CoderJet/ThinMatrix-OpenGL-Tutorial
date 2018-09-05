@@ -1,6 +1,9 @@
+// Precompiled header.
 #include "stdafx.h"
-
+// Header include.
 #include "Loader.h"
+// Local includes.
+#include "models/RawModel.h"
 
 Loader::Loader()
 	: m_vaos()
@@ -8,18 +11,21 @@ Loader::Loader()
 {
 }
 
-RawModel Loader::loadToVAO(std::vector<GLfloat> positions, std::vector<GLfloat> textureCoords, std::vector<GLuint> indices)
+RawModel Loader::loadToVAO(std::vector<GLfloat>& positions, std::vector<GLfloat>& textureCoords, std::vector<GLuint>& indices)
 {
 	GLuint vaoID = createVAO();
+	// Insert all unique verticie positions.
 	bindIndicesBuffer(indices);
+	// Insert the first item, vertex positions, into the VAO.
 	storeDataInAttributeList(0, 3, positions);
+	// Insert the next item, texture coordinates, into the VAO.
 	storeDataInAttributeList(1, 2, textureCoords);
 	unbindVAO();
-
+	// Return a model with it's collection of data.
 	return RawModel(vaoID, indices.size());
 }
 
-GLuint Loader::loadTexture(std::string fileName)
+GLuint Loader::loadTexture(const std::string& fileName)
 {
 	sf::Image image;
 	image.loadFromFile("./res/textures/" + fileName);
@@ -36,7 +42,7 @@ GLuint Loader::loadTexture(std::string fileName)
 		GL_RGBA, GL_UNSIGNED_BYTE, 
 		image.getPixelsPtr());
 	glGenerateMipmap(GL_TEXTURE_2D);
-
+	// Set some default settings for the texture, so it appears normally.
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -73,7 +79,7 @@ GLuint Loader::createVAO()
 	return vaoID;
 }
 
-void Loader::storeDataInAttributeList(GLuint attNumber, GLuint coordinateSize, std::vector<GLfloat> data)
+void Loader::storeDataInAttributeList(GLuint index, GLuint vectorSize, std::vector<GLfloat>& data)
 {
 	GLuint vboID;
 	GLsizei size = data.size() * sizeof(data[0]);
@@ -82,7 +88,7 @@ void Loader::storeDataInAttributeList(GLuint attNumber, GLuint coordinateSize, s
 	m_vbos.push_back(vboID);
 	glBindBuffer(GL_ARRAY_BUFFER, vboID);
 	glBufferData(GL_ARRAY_BUFFER, size, &data[0], GL_STATIC_DRAW);
-	glVertexAttribPointer(attNumber, coordinateSize, GL_FLOAT, GL_FALSE, 0, 0);
+	glVertexAttribPointer(index, vectorSize, GL_FLOAT, GL_FALSE, 0, 0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
@@ -91,7 +97,7 @@ void Loader::unbindVAO()
 	glBindVertexArray(0);
 }
 
-void Loader::bindIndicesBuffer(std::vector<GLuint> indices)
+void Loader::bindIndicesBuffer(std::vector<GLuint>& indices)
 {
 	GLuint vboID;
 	GLsizei size = indices.size() * sizeof(indices[0]);

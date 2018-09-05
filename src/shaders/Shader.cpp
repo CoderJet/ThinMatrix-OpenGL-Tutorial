@@ -1,8 +1,9 @@
+// Precompiled header.
 #include "stdafx.h"
-
+// Header include.
 #include "Shader.h"
 
-Shader::Shader(std::string vertexFile, std::string fragmentFile)
+Shader::Shader(const std::string& vertexFile, const std::string& fragmentFile)
 {
 	m_vertex_id = loadShader(vertexFile, GL_VERTEX_SHADER);
 	m_fragment_id = loadShader(fragmentFile, GL_FRAGMENT_SHADER);
@@ -17,6 +18,7 @@ Shader::Shader(std::string vertexFile, std::string fragmentFile)
 void Shader::start()
 {
 	glUseProgram(m_shader_id);
+	bindAttributes();
 	getAllUniformLocations();
 }
 
@@ -40,7 +42,7 @@ void Shader::bindAttribute(GLuint attribute, std::string variableName)
 	glBindAttribLocation(m_shader_id, attribute, variableName.c_str());
 }
 
-GLuint Shader::getUniformLocation(std::string uniformName)
+GLuint Shader::getUniformLocation(const std::string& uniformName)
 {
 	return glGetUniformLocation(m_shader_id, uniformName.c_str());
 }
@@ -65,7 +67,7 @@ void Shader::loadMatrix(GLuint location, glm::mat4 matrix)
 	glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
 }
 
-GLuint Shader::loadShader(std::string file, GLuint type)
+GLuint Shader::loadShader(const std::string& file, GLuint type)
 {
 	std::string shaderCode;
 	std::ifstream shaderFile;

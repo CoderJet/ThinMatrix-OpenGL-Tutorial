@@ -3,7 +3,7 @@
 class Shader
 {
 public:
-	Shader(std::string vertexFile, std::string fragmentFile);
+	Shader(const std::string& vertexFile, const std::string& fragmentFile);
 
 	void start();
 
@@ -18,7 +18,7 @@ protected:
 
 	void bindAttribute(GLuint attribute, std::string variableName);
 
-	GLuint getUniformLocation(std::string uniformName);
+	GLuint getUniformLocation(const std::string& uniformName);
 
 	void loadFloat(GLuint location, GLfloat value);
 
@@ -29,7 +29,7 @@ protected:
 	void loadMatrix(GLuint location, glm::mat4 matrix);
 
 private:
-	static GLuint loadShader(std::string file, GLuint type);
+	static GLuint loadShader(const std::string& file, GLuint type);
 
 private:
 	GLuint			m_shader_id;

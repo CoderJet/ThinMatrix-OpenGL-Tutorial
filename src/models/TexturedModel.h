@@ -1,12 +1,12 @@
 #pragma once
-
+// Local includes.
 #include "RawModel.h"
 #include "textures/ModelTexture.h"
 
 class TexturedModel
 {
 public:
-	TexturedModel(RawModel model, ModelTexture texture);
+	TexturedModel(RawModel& model, ModelTexture& texture);
 
 	RawModel getRawModel();
 

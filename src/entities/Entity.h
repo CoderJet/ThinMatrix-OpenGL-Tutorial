@@ -1,11 +1,11 @@
 #pragma once
-
+// Local includes.
 #include "models/TexturedModel.h"
 
 class Entity
 {
 public:
-	Entity(TexturedModel model, glm::vec3 position, GLfloat rotX, GLfloat rotY, GLfloat rotZ, GLfloat scale);
+	Entity(TexturedModel& model, glm::vec3 position, glm::vec3 rotation, GLfloat scale);
 
 	void increasePosition(GLfloat dx, GLfloat dy, GLfloat dz);
 
@@ -15,20 +15,14 @@ public:
 
 	glm::vec3 getPosition();
 
-	GLfloat getRotationX();
-
-	GLfloat getRotationY();
-
-	GLfloat getRotationZ();
+	glm::vec3 getRotation();
 
 	GLfloat getScale();
 
 private:
 	TexturedModel		m_model;
 	glm::vec3			m_position;
-	GLfloat				m_rot_x;
-	GLfloat				m_rot_y;
-	GLfloat				m_rot_z;
+	glm::vec3			m_rotation;
 	GLfloat				m_scale;
 };
 

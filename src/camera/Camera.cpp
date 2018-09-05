@@ -1,6 +1,7 @@
+// Precompiled header.
 #include "stdafx.h"
+// Header include.
 #include "Camera.h"
-
 
 Camera::Camera()
 	: m_position(0, 0, 0)

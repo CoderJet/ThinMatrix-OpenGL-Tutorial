@@ -2,7 +2,7 @@
 
 class Camera
 {
-public:
+public:		
 	Camera();
 
 	void move();

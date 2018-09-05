@@ -1,26 +1,26 @@
 #pragma once
 
-#include "models/RawModel.h"
+class RawModel;
 
 class Loader
 {
 public:
 	Loader();
 
-	RawModel loadToVAO(std::vector<GLfloat> positions, std::vector<GLfloat> textureCoords, std::vector<GLuint> indices);
+	RawModel loadToVAO(std::vector<GLfloat>& positions, std::vector<GLfloat>& textureCoords, std::vector<GLuint>& indices);
 
-	GLuint loadTexture(std::string fileName);
+	GLuint loadTexture(const std::string& fileName);
 
 	void cleanUp();
 
 private:
 	GLuint createVAO();
 
-	void storeDataInAttributeList(GLuint attNumber, GLuint coordinateSize, std::vector<GLfloat> data);
+	void storeDataInAttributeList(GLuint index, GLuint vectorSize, std::vector<GLfloat>& data);
 
 	void unbindVAO();
 
-	void bindIndicesBuffer(std::vector<GLuint> indices);
+	void bindIndicesBuffer(std::vector<GLuint>& indices);
 
 private:
 	std::vector<GLuint>		m_vaos;
