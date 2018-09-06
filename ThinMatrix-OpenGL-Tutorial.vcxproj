@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\render-engine\OBJLoader.h" />
     <ClInclude Include="src\camera\Camera.h" />
     <ClInclude Include="src\entities\Entity.h" />
     <ClInclude Include="src\toolbox\Maths.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="src\models\TexturedModel.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\render-engine\OBJLoader.cpp" />
     <ClCompile Include="src\camera\Camera.cpp" />
     <ClCompile Include="src\entities\Entity.cpp" />
     <ClCompile Include="src\toolbox\Maths.cpp" />
