@@ -7,7 +7,7 @@ class Loader
 public:
 	Loader();
 
-	RawModel loadToVAO(std::vector<GLfloat>& positions, std::vector<GLfloat>& textureCoords, std::vector<GLuint>& indices);
+	RawModel loadToVAO(std::vector<GLfloat>& positions, std::vector<GLfloat>& textureCoords, std::vector<GLfloat>& normals, std::vector<GLuint>& indices);
 
 	GLuint loadTexture(const std::string& fileName);
 

@@ -36,6 +36,7 @@ void Renderer::render(Entity& entity, StaticShader& shader)
 	glBindVertexArray(model.getVaoID());
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
 
 	// Get the entities current transformtion details so we can pass it to the shader.
 	glm::mat4 transformationMatrix(maths::createTransformationMatrix(
@@ -51,6 +52,7 @@ void Renderer::render(Entity& entity, StaticShader& shader)
 	glDrawElements(GL_TRIANGLES, model.getVertexCount(), GL_UNSIGNED_INT, 0);
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
 	glBindVertexArray(0);
 }
 

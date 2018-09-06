@@ -11,7 +11,7 @@ Loader::Loader()
 {
 }
 
-RawModel Loader::loadToVAO(std::vector<GLfloat>& positions, std::vector<GLfloat>& textureCoords, std::vector<GLuint>& indices)
+RawModel Loader::loadToVAO(std::vector<GLfloat>& positions, std::vector<GLfloat>& textureCoords, std::vector<GLfloat>& normals, std::vector<GLuint>& indices)
 {
 	GLuint vaoID = createVAO();
 	// Insert all unique verticie positions.
@@ -20,6 +20,8 @@ RawModel Loader::loadToVAO(std::vector<GLfloat>& positions, std::vector<GLfloat>
 	storeDataInAttributeList(0, 3, positions);
 	// Insert the next item, texture coordinates, into the VAO.
 	storeDataInAttributeList(1, 2, textureCoords);
+	// Insert the next item, normals, into the VAO.
+	storeDataInAttributeList(2, 3, normals);
 	unbindVAO();
 	// Return a model with it's collection of data.
 	return RawModel(vaoID, indices.size());

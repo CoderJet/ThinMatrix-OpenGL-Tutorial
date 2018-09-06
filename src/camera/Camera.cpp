@@ -32,6 +32,16 @@ void Camera::move()
 	{
 		m_position.x += 0.02f;
 	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		m_position.y += 0.2f;
+	}
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))
+	{
+		m_position.y -= 0.2f;
+	}
 }
 
 glm::vec3 Camera::getPosition()

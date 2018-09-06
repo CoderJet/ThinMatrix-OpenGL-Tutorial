@@ -3,6 +3,7 @@
 #include "Shader.h"
 
 class Camera;
+class Light;
 
 class StaticShader : public Shader
 {
@@ -19,9 +20,13 @@ public:
 
 	void loadViewMatrix(Camera& camera);
 
+	void loadLight(Light& light);
+
 private:
 	GLuint			m_transformation_matrix_id;
 	GLuint			m_projection_matrix_id;
 	GLuint			m_view_matrix_id;
+	GLuint			m_light_position_id;
+	GLuint			m_light_colour_id;
 };
 
