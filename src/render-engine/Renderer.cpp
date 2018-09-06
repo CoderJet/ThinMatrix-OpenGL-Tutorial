@@ -46,6 +46,10 @@ void Renderer::render(Entity& entity, StaticShader& shader)
 	);
 	// Update the shader so objects can move.
 	shader.loadTransformationMatrix(transformationMatrix);
+
+	ModelTexture texture = texturedModel.getTexture();
+	shader.loadShineVariables(texture.getShineDamper(), texture.getReflectivity());
+
 	// Render the entity to the screen.
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texturedModel.getTexture().getID());
