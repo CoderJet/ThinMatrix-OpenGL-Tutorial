@@ -35,8 +35,6 @@ namespace obj
 		void readIntoStringVector(std::vector<std::string>& destination, std::istringstream& source);
 
 		RawModel loadObjModel(const std::string& fileName, Loader& loader);
-
-		static sf::Clock m_clock;
 	}
 }
 

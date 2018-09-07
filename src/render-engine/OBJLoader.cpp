@@ -52,8 +52,6 @@ void obj::loader::readIntoStringVector(std::vector<std::string>& destination, st
 
 RawModel obj::loader::loadObjModel(const std::string& fileName, Loader& loader)
 {
-	m_clock.restart();
-
 	std::stringstream objData;
 	obj::loader::readObjFile(objData, fileName);
 	
@@ -94,7 +92,6 @@ RawModel obj::loader::loadObjModel(const std::string& fileName, Loader& loader)
 			readIntoStringVector(faces, ss);
 		}
 	}
-	std::cout << "Total elapse :" << std::to_string(m_clock.getElapsedTime().asSeconds()) << std::endl;
 
 	std::vector<GLfloat> finalVertices;
 	std::vector<GLfloat> finalTexCoords;
