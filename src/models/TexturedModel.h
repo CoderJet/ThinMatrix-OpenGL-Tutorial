@@ -7,13 +7,19 @@ class TexturedModel
 {
 public:
 	TexturedModel(RawModel& model, ModelTexture& texture);
+	
+	RawModel getRawModel() const;
 
-	RawModel getRawModel();
+	ModelTexture getTexture() const;
 
-	ModelTexture getTexture();
+	bool operator < (const TexturedModel& other) const
+	{
+		return other.getRawModel().getVaoID() < this->getRawModel().getVaoID();
+	}
 
 private:
 	RawModel			m_raw_model;
 	ModelTexture		m_texture;
-};
 
+	GLuint				m_id;
+};

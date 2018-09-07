@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\render-engine\MasterRenderer.h" />
     <ClInclude Include="src\entities\Light.h" />
     <ClInclude Include="src\render-engine\OBJLoader.h" />
     <ClInclude Include="src\camera\Camera.h" />
@@ -177,6 +178,7 @@
     <ClInclude Include="src\models\TexturedModel.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\render-engine\MasterRenderer.cpp" />
     <ClCompile Include="src\entities\Light.cpp" />
     <ClCompile Include="src\render-engine\OBJLoader.cpp" />
     <ClCompile Include="src\camera\Camera.cpp" />

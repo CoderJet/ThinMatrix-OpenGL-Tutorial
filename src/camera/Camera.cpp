@@ -15,22 +15,22 @@ void Camera::move()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		m_position.z -= 0.02f;
+		m_position.z -= 0.2f;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		m_position.z += 0.02f;
+		m_position.z += 0.2f;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		m_position.x -= 0.02f;
+		m_position.x -= 0.2f;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		m_position.x += 0.02f;
+		m_position.x += 0.2f;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))

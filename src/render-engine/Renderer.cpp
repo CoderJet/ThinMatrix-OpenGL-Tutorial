@@ -5,15 +5,19 @@
 // Local cincludes.
 #include "config/Config.h"
 #include "entities/Entity.h"
-#include "shaders/StaticShader.h"
+#include "models/TexturedModel.h"
 #include "toolbox/Maths.h"
 
 Renderer::Renderer(StaticShader& shader)
+	: m_shader(shader)
 {
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+
 	createProjectionMatrix();
-	shader.start();
-	shader.loadProjectionMatrix(m_projection_matrix);
-	shader.stop();
+	m_shader.start();
+	m_shader.loadProjectionMatrix(m_projection_matrix);
+	m_shader.stop();
 }
 
 void Renderer::prepare()
@@ -26,18 +30,51 @@ void Renderer::prepare()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::render(Entity& entity, StaticShader& shader)
+void Renderer::render(const std::map<TexturedModel, std::vector<Entity>>& entities)
 {
-	// Get the textured model from our passed entity.
-	TexturedModel texturedModel(entity.getModel());
+	for (auto& pair : entities)
+	{
+		TexturedModel model(pair.first);
+		prepareTexturedModel(model);
+
+		for (auto& entity : pair.second)
+		{
+			prepareInstance(entity);
+
+			glDrawElements(GL_TRIANGLES, model.getRawModel().getVertexCount(), GL_UNSIGNED_INT, 0);
+		}
+		unbindTexturedModel();
+	}
+}
+
+void Renderer::prepareTexturedModel(TexturedModel model)
+{
 	// Get the raw model from within the textured model.
-	RawModel model(texturedModel.getRawModel());
+	RawModel rawModel(model.getRawModel());
 	// Push the current models details out into a VAO so it can be rendered.
-	glBindVertexArray(model.getVaoID());
+	glBindVertexArray(rawModel.getVaoID());
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
 
+	ModelTexture texture = model.getTexture();
+	m_shader.loadShineVariables(texture.getShineDamper(), texture.getReflectivity());
+
+	// Render the entity to the screen.
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, model.getTexture().getID());
+}
+
+void Renderer::unbindTexturedModel()
+{
+	glDisableVertexAttribArray(0);
+	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
+	glBindVertexArray(0);
+}
+
+void Renderer::prepareInstance(Entity entity)
+{
 	// Get the entities current transformtion details so we can pass it to the shader.
 	glm::mat4 transformationMatrix(maths::createTransformationMatrix(
 		entity.getPosition(),
@@ -45,19 +82,7 @@ void Renderer::render(Entity& entity, StaticShader& shader)
 		entity.getScale())
 	);
 	// Update the shader so objects can move.
-	shader.loadTransformationMatrix(transformationMatrix);
-
-	ModelTexture texture = texturedModel.getTexture();
-	shader.loadShineVariables(texture.getShineDamper(), texture.getReflectivity());
-
-	// Render the entity to the screen.
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texturedModel.getTexture().getID());
-	glDrawElements(GL_TRIANGLES, model.getVertexCount(), GL_UNSIGNED_INT, 0);
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
-	glBindVertexArray(0);
+	m_shader.loadTransformationMatrix(transformationMatrix);
 }
 
 void Renderer::createProjectionMatrix()
