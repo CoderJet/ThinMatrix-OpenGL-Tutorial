@@ -15,6 +15,8 @@ public:
 
 	bool pollEvents(sf::Event& event);
 
+	bool hasFocus();
+
 private:
 	DisplayManager();
 

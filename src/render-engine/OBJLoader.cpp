@@ -109,6 +109,10 @@ RawModel obj::loader::loadObjModel(const std::string& fileName, Loader& loader)
 
 			pointAt = 0;
 			while (getline(ss, str, '/')) {
+				if (str.empty())
+				{
+					str = "0";
+				}
 				gli[pointAt] = std::stoi(str);
 				pointAt++;
 			}

@@ -1,18 +1,18 @@
 // Precompiled header.
 #include "stdafx.h"
 // Header include.
-#include "StaticShader.h"
+#include "TerrainShader.h"
 // Local includes.
 #include "camera/Camera.h"
 #include "entities/Light.h"
 #include "toolbox/Maths.h"
 
-StaticShader::StaticShader()
-	: Shader("./res/shaders/Basic.vert", "./res/shaders/Basic.frag")
+TerrainShader::TerrainShader()
+	: Shader("./res/shaders/Terrain.vert", "./res/shaders/Terrain.frag")
 {
 }
 
-void StaticShader::bindAttributes()
+void TerrainShader::bindAttributes()
 {
 	// Associate each 'in' variable with the VAO indexes.
 	this->bindAttribute(0, "position");
@@ -20,7 +20,7 @@ void StaticShader::bindAttributes()
 	this->bindAttribute(2, "normal");
 }
 
-void StaticShader::getAllUniformLocations()
+void TerrainShader::getAllUniformLocations()
 {
 	// Get all the ids for all the unfiforms for the current vertex and fragment shaders.
 	m_transformation_matrix_id = this->getUniformLocation("transformationMatrix");
@@ -32,28 +32,28 @@ void StaticShader::getAllUniformLocations()
 	m_reflectivity_id = this->getUniformLocation("reflectivity");
 }
 
-void StaticShader::loadTransformationMatrix(glm::mat4 matrix)
+void TerrainShader::loadTransformationMatrix(glm::mat4 matrix)
 {
 	this->loadMatrix(m_transformation_matrix_id, matrix);
 }
 
-void StaticShader::loadProjectionMatrix(glm::mat4 projection)
+void TerrainShader::loadProjectionMatrix(glm::mat4 projection)
 {
 	this->loadMatrix(m_projection_matrix_id, projection);
 }
 
-void StaticShader::loadViewMatrix(Camera& camera)
+void TerrainShader::loadViewMatrix(Camera& camera)
 {
 	this->loadMatrix(m_view_matrix_id, maths::createViewMatrix(camera));
 }
 
-void StaticShader::loadLight(Light& light)
+void TerrainShader::loadLight(Light& light)
 {
 	this->loadVector(m_light_position_id, light.getPosition());
 	this->loadVector(m_light_colour_id, light.getColour());
 }
 
-void StaticShader::loadShineVariables(float damper, float reflectivity)
+void TerrainShader::loadShineVariables(float damper, float reflectivity)
 {
 	this->loadFloat(m_shine_damper_id, damper);
 	this->loadFloat(m_reflectivity_id, reflectivity);

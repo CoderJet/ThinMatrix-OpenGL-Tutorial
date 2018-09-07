@@ -61,3 +61,8 @@ bool DisplayManager::pollEvents(sf::Event & event)
 	// Fill the event with all currently polling events from the system.
 	return m_window.pollEvent(event);
 }
+
+bool DisplayManager::hasFocus()
+{
+	return m_window.hasFocus();
+}

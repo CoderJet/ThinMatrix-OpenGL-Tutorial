@@ -167,7 +167,7 @@
     <ClInclude Include="src\toolbox\Maths.h" />
     <ClInclude Include="src\textures\ModelTexture.h" />
     <ClInclude Include="src\shaders\Shader.h" />
-    <ClInclude Include="src\render-engine\Renderer.h" />
+    <ClInclude Include="src\render-engine\EntityRenderer.h" />
     <ClInclude Include="src\render-engine\Loader.h" />
     <ClInclude Include="src\models\RawModel.h" />
     <ClInclude Include="src\render-engine\DisplayManager.h" />
@@ -176,6 +176,9 @@
     <ClInclude Include="src\targetver.h" />
     <ClInclude Include="src\shaders\StaticShader.h" />
     <ClInclude Include="src\models\TexturedModel.h" />
+    <ClInclude Include="src\terrains\Terrain.h" />
+    <ClInclude Include="src\shaders\TerrainShader.h" />
+    <ClInclude Include="src\render-engine\TerrainRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\render-engine\MasterRenderer.cpp" />
@@ -186,7 +189,7 @@
     <ClCompile Include="src\toolbox\Maths.cpp" />
     <ClCompile Include="src\textures\ModelTexture.cpp" />
     <ClCompile Include="src\shaders\Shader.cpp" />
-    <ClCompile Include="src\render-engine\Renderer.cpp" />
+    <ClCompile Include="src\render-engine\EntityRenderer.cpp" />
     <ClCompile Include="src\render-engine\Loader.cpp" />
     <ClCompile Include="src\models\RawModel.cpp" />
     <ClCompile Include="src\render-engine\DisplayManager.cpp" />
@@ -199,10 +202,13 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\shaders\StaticShader.cpp" />
     <ClCompile Include="src\models\TexturedModel.cpp" />
+    <ClCompile Include="src\terrains\Terrain.cpp" />
+    <ClCompile Include="src\shaders\TerrainShader.cpp" />
+    <ClCompile Include="src\render-engine\TerrainRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\shaders\Basic.frag" />
-    <None Include="src\shaders\Basic.vert" />
+    <None Include="res\shaders\Basic.frag" />
+    <None Include="res\shaders\Basic.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
