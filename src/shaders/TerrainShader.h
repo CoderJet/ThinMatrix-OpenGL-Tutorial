@@ -24,6 +24,8 @@ public:
 
 	void loadShineVariables(float damper, float reflectivity);
 
+	void loadSkyColour(glm::vec3 value);
+
 private:
 	GLuint			m_transformation_matrix_id;
 	GLuint			m_projection_matrix_id;
@@ -32,5 +34,6 @@ private:
 	GLuint			m_light_colour_id;
 	GLuint			m_shine_damper_id;
 	GLuint			m_reflectivity_id;
+	GLuint			m_sky_colour_id;
 };
 

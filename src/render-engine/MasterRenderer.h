@@ -37,6 +37,7 @@ private:
 	const GLfloat										FOV{ 70.0f };
 	const GLfloat										NEAR_PLANE{ 0.1f };
 	const GLfloat										FAR_PLANE{ 1000.0f };
+	const glm::vec3										SKY_COLOUR{ 0.5f, 0.5f, 0.5f };
 
 	glm::mat4											m_projection_matrix;
 	StaticShader										m_shader;

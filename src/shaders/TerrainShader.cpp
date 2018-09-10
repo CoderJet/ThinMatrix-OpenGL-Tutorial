@@ -30,6 +30,7 @@ void TerrainShader::getAllUniformLocations()
 	m_light_colour_id = this->getUniformLocation("lightColour");
 	m_shine_damper_id = this->getUniformLocation("shineDamper");
 	m_reflectivity_id = this->getUniformLocation("reflectivity");
+	m_sky_colour_id = this->getUniformLocation("skyColour");
 }
 
 void TerrainShader::loadTransformationMatrix(glm::mat4 matrix)
@@ -57,4 +58,9 @@ void TerrainShader::loadShineVariables(float damper, float reflectivity)
 {
 	this->loadFloat(m_shine_damper_id, damper);
 	this->loadFloat(m_reflectivity_id, reflectivity);
+}
+
+void TerrainShader::loadSkyColour(glm::vec3 value)
+{
+	this->loadVector(m_sky_colour_id, value);
 }

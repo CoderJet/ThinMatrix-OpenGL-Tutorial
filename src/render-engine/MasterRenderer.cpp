@@ -25,7 +25,7 @@ void MasterRenderer::prepare()
 	// not to draw ontop of one another.
 	glEnable(GL_DEPTH_TEST);
 	// Clear the screen with a default colour.
-	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	glClearColor(SKY_COLOUR.x, SKY_COLOUR.y, SKY_COLOUR.z, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
@@ -44,12 +44,14 @@ void MasterRenderer::render(Light& sun, Camera& camera)
 	prepare();
 	
 	m_shader.start();
+	m_shader.loadSkyColour(SKY_COLOUR);
 	m_shader.loadLight(sun);
 	m_shader.loadViewMatrix(camera);
 	m_renderer.render(m_entities);
 	m_shader.stop();
 
 	m_terrain_shader.start();
+	m_terrain_shader.loadSkyColour(SKY_COLOUR);
 	m_terrain_shader.loadLight(sun);
 	m_terrain_shader.loadViewMatrix(camera);
 	m_terrain_renderer.render(m_terrains);
