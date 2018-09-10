@@ -15,6 +15,14 @@ public:
 
 	GLfloat getRoll();
 
+	void setPosition(glm::vec3 value);
+
+	void setPitch(GLfloat value);
+
+	void setYaw(GLfloat value);
+
+	void setRoll(GLfloat value);
+
 private:
 	glm::vec3			m_position;
 	GLfloat				m_pitch;

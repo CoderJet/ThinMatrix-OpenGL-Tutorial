@@ -3,6 +3,7 @@
 // Header include.
 #include "EntityRenderer.h"
 // Local cincludes.
+#include "MasterRenderer.h"
 #include "config/Config.h"
 #include "entities/Entity.h"
 #include "models/TexturedModel.h"
@@ -11,8 +12,6 @@
 EntityRenderer::EntityRenderer(StaticShader& shader, glm::mat4 projectionMatrix)
 	: m_shader(shader)
 {
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
 	m_shader.start();
 	m_shader.loadProjectionMatrix(projectionMatrix);
 	m_shader.stop();
@@ -46,6 +45,11 @@ void EntityRenderer::prepareTexturedModel(TexturedModel model)
 	glEnableVertexAttribArray(2);
 
 	ModelTexture texture = model.getTexture();
+	if (texture.hasTransparency())
+	{
+		MasterRenderer::disableCulling();
+	}
+	m_shader.loadFakeLightingVariable(texture.useFakeLighting());
 	m_shader.loadShineVariables(texture.getShineDamper(), texture.getReflectivity());
 
 	// Render the entity to the screen.
@@ -55,6 +59,7 @@ void EntityRenderer::prepareTexturedModel(TexturedModel model)
 
 void EntityRenderer::unbindTexturedModel()
 {
+	MasterRenderer::enableCulling();
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);

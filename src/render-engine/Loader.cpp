@@ -11,7 +11,7 @@ Loader::Loader()
 {
 }
 
-RawModel Loader::loadToVAO(std::vector<GLfloat>& positions, std::vector<GLfloat>& textureCoords, std::vector<GLfloat>& normals, std::vector<GLuint>& indices)
+RawModel Loader::loadToVAO(std::vector<GLfloat>& positions, std::vector<GLfloat>& textureCoords, std::vector<GLfloat>& normals, std::vector<GLint>& indices)
 {
 	GLuint vaoID = createVAO();
 	// Insert all unique verticie positions.
@@ -31,6 +31,7 @@ GLuint Loader::loadTexture(const std::string& fileName)
 {
 	sf::Image image;
 	image.loadFromFile("./res/textures/" + fileName);
+	image.flipVertically();
 
 	GLuint textureID;
 	glGenTextures(1, &textureID);
@@ -99,7 +100,7 @@ void Loader::unbindVAO()
 	glBindVertexArray(0);
 }
 
-void Loader::bindIndicesBuffer(std::vector<GLuint>& indices)
+void Loader::bindIndicesBuffer(std::vector<GLint>& indices)
 {
 	GLuint vboID;
 	GLsizei size = indices.size() * sizeof(indices[0]);

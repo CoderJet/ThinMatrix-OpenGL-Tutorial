@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\toolbox\Random.h" />
     <ClInclude Include="src\render-engine\MasterRenderer.h" />
     <ClInclude Include="src\entities\Light.h" />
     <ClInclude Include="src\render-engine\OBJLoader.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="src\render-engine\TerrainRenderer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\toolbox\Random.cpp" />
     <ClCompile Include="src\render-engine\MasterRenderer.cpp" />
     <ClCompile Include="src\entities\Light.cpp" />
     <ClCompile Include="src\render-engine\OBJLoader.cpp" />

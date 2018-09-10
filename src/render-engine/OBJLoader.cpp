@@ -96,7 +96,7 @@ RawModel obj::loader::loadObjModel(const std::string& fileName, Loader& loader)
 	std::vector<GLfloat> finalVertices;
 	std::vector<GLfloat> finalTexCoords;
 	std::vector<GLfloat> finalNormals;
-	std::vector<GLuint> indices;
+	std::vector<GLint> indices;
 
 	if (!vertices.empty())
 	{
@@ -109,10 +109,6 @@ RawModel obj::loader::loadObjModel(const std::string& fileName, Loader& loader)
 
 			pointAt = 0;
 			while (getline(ss, str, '/')) {
-				if (str.empty())
-				{
-					str = "0";
-				}
 				gli[pointAt] = std::stoi(str);
 				pointAt++;
 			}

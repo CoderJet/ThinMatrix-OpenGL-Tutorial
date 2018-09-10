@@ -24,6 +24,8 @@ public:
 
 	void loadShineVariables(float damper, float reflectivity);
 
+	void loadFakeLightingVariable(bool useFake);
+
 private:
 	GLuint			m_transformation_matrix_id;
 	GLuint			m_projection_matrix_id;
@@ -32,5 +34,6 @@ private:
 	GLuint			m_light_colour_id;
 	GLuint			m_shine_damper_id;
 	GLuint			m_reflectivity_id;
+	GLuint			m_use_fake_lighting_id;
 };
 

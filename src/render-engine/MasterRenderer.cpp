@@ -16,6 +16,7 @@ MasterRenderer::MasterRenderer()
 	, m_entities()
 	, m_terrains()
 {
+	enableCulling();
 }
 
 void MasterRenderer::prepare()
@@ -26,6 +27,16 @@ void MasterRenderer::prepare()
 	// Clear the screen with a default colour.
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void MasterRenderer::enableCulling()
+{
+	glDisable(GL_CULL_FACE);
+}
+
+void MasterRenderer::disableCulling()
+{
+	glEnable(GL_CULL_FACE);
 }
 
 void MasterRenderer::render(Light& sun, Camera& camera)

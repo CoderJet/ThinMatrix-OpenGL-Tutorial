@@ -21,7 +21,7 @@ RawModel Terrain::generateTerrain(Loader & loader)
 	std::vector<GLfloat> normals(count * 3);
 	std::vector<GLfloat> textures(count * 2);
 
-	std::vector<GLuint> indices(6 * (VERTEX_COUNT - 1) * (VERTEX_COUNT - 1));
+	std::vector<GLint> indices(6 * (VERTEX_COUNT - 1) * (VERTEX_COUNT - 1));
 
 	int vertexPointer = 0;
 

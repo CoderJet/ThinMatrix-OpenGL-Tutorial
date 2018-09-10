@@ -5,9 +5,9 @@
 #include "render-engine/DisplayManager.h"
 
 Camera::Camera()
-	: m_position(0, 5, 10)
+	: m_position(0, 0, 0)
 	, m_pitch()
-	, m_yaw()
+	, m_yaw(135)
 	, m_roll()
 {
 }
@@ -86,4 +86,24 @@ GLfloat Camera::getYaw()
 GLfloat Camera::getRoll()
 {
 	return m_roll;
+}
+
+void Camera::setPosition(glm::vec3 value)
+{
+	m_position = value;
+}
+
+void Camera::setPitch(GLfloat value)
+{
+	m_pitch = value;
+}
+
+void Camera::setYaw(GLfloat value)
+{
+	m_yaw = value;
+}
+
+void Camera::setRoll(GLfloat value)
+{
+	m_roll = value;
 }

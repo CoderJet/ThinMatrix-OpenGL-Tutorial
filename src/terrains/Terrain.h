@@ -21,8 +21,8 @@ public:
 	ModelTexture getTexture();
 	
 private:
-	const GLfloat			SIZE{ 5 };
-	const GLuint			VERTEX_COUNT{ 5 };
+	const GLfloat			SIZE{ 800 };
+	const GLuint			VERTEX_COUNT{ 128 };
 
 	GLfloat					m_x;
 	GLfloat					m_z;

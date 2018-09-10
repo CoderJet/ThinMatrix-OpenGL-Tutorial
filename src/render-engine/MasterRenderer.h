@@ -18,6 +18,10 @@ public:
 
 	void prepare();
 
+	static void enableCulling();
+
+	static void disableCulling();
+
 	void render(Light& sun, Camera& camera);
 
 	void processTerrains(Terrain& terrain);
